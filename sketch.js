@@ -17,6 +17,7 @@ function setup() {
 	createCanvas(800, 700);
 	rectMode(CENTER);
 	
+	
 
 	packageSprite=createSprite(width/2, 80, 20,20);
 	packageSprite.addImage(packageIMG)
@@ -55,25 +56,31 @@ function setup() {
 function draw() {
   rectMode(CENTER);
   background(0);
+  Engine.update(engine);
   packageSprite.x= packageBody.position.x 
   packageSprite.y= packageBody.position.y 
   drawSprites();
 
 	
-  if(keyDown(DOWN_ARROW)) {
-	Matter.Body.setStatic(packageBody,false);
-	}	
-	if(keyCode === LEFT_ARROW){
-		helicopterSprite.x = helicopterSprite.x-20
-	}
-
-	if(keyCode === RIGHT_ARROW){
-		helicopterSprite.x = helicopterSprite.x+20
-	}
-	Matter.Body.translate(packageBody,{x:-20, y:0})
+  
+	
 	box1.display();
 	box2.display();
 	box3.display();
 
-  Engine.update(engine);
+  
+}
+function keyPressed(){
+	if(keyCode=== DOWN_ARROW) {
+	Matter.Body.setStatic(packageBody,false);
+	}	
+	if(keyCode === LEFT_ARROW){
+		helicopterSprite.x = helicopterSprite.x-20
+		Matter.Body.translate(packageBody,{x:-20, y:0})
+	}
+
+	if(keyCode === RIGHT_ARROW){
+		helicopterSprite.x = helicopterSprite.x+20
+		Matter.Body.translate(packageBody,{x:20, y:0})
+	}
 }
